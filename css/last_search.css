@@ -1,0 +1,505 @@
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url("../font/Avenir_Medium.ttf");
+    /* File to be stored at your site */
+}
+
+body {
+    margin: 0px;
+}
+
+/* Mobile Version */
+@media only screen and (max-height: 767.98px),
+only screen and (max-width: 767.98px) {
+    #continueSearchImg {
+        content: url(../img/App/S.png);
+    }
+
+    #continueButton {
+        opacity: 0.85;
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 41px;
+        /* Place the button at the bottom of the page */
+        right: 0px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        width: 63px;
+        height: 38px;
+        border-radius: 10px;
+        border-style: none;
+        /*outline: none;*/
+        /* Remove outline */
+        background-color: #002F65;
+        /* Set a background color */
+        color: white;
+        /* Text color */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        border-radius: 10px 0px 0px 10px;
+        /* Rounded corners */
+        display: none;
+        /* Increase font size */
+        font-family: Avenir Medium;
+        font-size: 12px;
+        text-align: center;
+        line-height: 13px;
+    }
+
+    .continue-btn-show {
+        animation-name: showContinueButton;
+        animation-duration: 0.2s;
+    }
+
+    .continue-btn-hide {
+        animation-name: hideContinueButton;
+        animation-duration: 0.2s;
+    }
+
+    @keyframes hideContinueButton {
+        from {
+            right: 0px;
+        }
+
+        to {
+            right: -63px;
+        }
+    }
+
+    @keyframes showContinueButton {
+        from {
+            right: -63px;
+        }
+
+        to {
+            right: 0px;
+        }
+    }
+
+    #continueSearchImg {
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 79px;
+        /* Place the button at the bottom of the page */
+        right: 0px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        display: none;
+        width: 65px;
+        height: 51px;
+    }
+
+    #carousellist a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    #closeIcon {
+        cursor: pointer;
+    }
+
+    .hotelIcon {
+        float: left;
+        padding-left: 15px;
+        padding-top: 3px;
+        padding-right: 9px;
+        padding-bottom: 48px;
+        width: 11px;
+        height: 13px;
+        content: url(../img/App/icon_hotel.png);
+    }
+
+    .closeIcon {
+        float: left;
+        /* padding-left: 18px;
+		padding-top: 30px; */
+        padding: 30px 18px 29px 19px;
+        width: 20px;
+        height: 20px;
+        content: url(../img/App/icon_close.png);
+    }
+
+    .carouseltext {
+        width: 192px;
+        height: 64px;
+        text-align: left;
+        font-size: 12px;
+        line-height: 16px;
+        color: white;
+        font-family: Avenir Medium;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .stickyBar {
+        width: 100%;
+        height: 70px;
+        background-color: #002F65;
+        position: fixed;
+        bottom: 0;
+        color: white;
+        display: none;
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+
+    .scroll-nav {
+        display: none;
+        width: 100%;
+        background: #002F65;
+        opacity: 0.95;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 0px;
+        /* Place the button at the bottom of the page */
+        z-index: 99;
+        /* Make sure it does not overlap */
+    }
+
+    .nav-open {
+        animation-name: openScrollNav;
+        animation-duration: 0.2s;
+    }
+
+    .nav-close {
+        animation-name: closeScrollNav;
+        animation-duration: 0.2s;
+    }
+
+    @keyframes openScrollNav {
+        from {
+            right: -100%;
+        }
+
+        to {
+            right: 0;
+        }
+    }
+
+    @keyframes closeScrollNav {
+        from {
+            right: 0;
+        }
+
+        to {
+            right: -100%;
+        }
+    }
+
+    .scroll-nav::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* .scroll-nav::-webkit-scrollbar-track {} */
+
+    .scroll-nav::-webkit-scrollbar-thumb {
+        background: #2E7D32;
+    }
+
+    .item-split-line {
+        height: 63px;
+        opacity: 0.4;
+        border: 1px solid #FFFFFF;
+    }
+
+    #carousellist {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .closebuttonli {
+        width: 57px;
+        height: 79px;
+    }
+
+    li.carousel {
+        display: flex;
+        width: 192px;
+        height: 64px;
+        padding: 8px 0px 7px 0px;
+        /* margin: 1px; */
+        background: #002F65;
+
+    }
+
+    li.iconhotel {
+        width: 50px;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    li.carousel:first-child:before {
+        display: none;
+    }
+
+    li.carousel:before {
+        content: "";
+        display: inline-block;
+        /* margin-left: 40px; */
+        border-right: 1px solid grey;
+        height: 70px;
+        top: 9px;
+        position: absolute;
+    }
+
+}
+
+/* Desktop Version */
+@media only screenand and (min-width: 767.98px),
+only screen and (min-width: 767.99px) {
+    #continueSearchImg {
+        content: url(../img/Desktop/L.png);
+    }
+
+    #continueButton {
+        opacity: 0.85;
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 52px;
+        /* Place the button at the bottom of the page */
+        right: 17px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        width: 86px;
+        height: 46px;
+        border-radius: 10px;
+        border-style: none;
+        /*outline: none;*/
+        /* Remove outline */
+        background-color: #002F65;
+        /* Set a background color */
+        color: white;
+        /* Text color */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        border-radius: 10px;
+        /* Rounded corners */
+        display: none;
+        /*font-size: 18px;*/
+        /* Increase font size */
+        font-family: Avenir Medium;
+        font-size: 15px;
+        text-align: center;
+        line-height: 16px;
+    }
+
+    .continue-btn-show {
+        animation-name: showContinueButton;
+        animation-duration: 0.2s;
+    }
+
+    .continue-btn-hide {
+        animation-name: hideContinueButton;
+        animation-duration: 0.2s;
+    }
+
+    @keyframes hideContinueButton {
+        from {
+            right: 17px;
+        }
+
+        to {
+            right: -86px;
+        }
+    }
+
+    @keyframes showContinueButton {
+        from {
+            right: -86px;
+        }
+
+        to {
+            right: 17px;
+        }
+    }
+
+    #continueSearchImg {
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 98px;
+        /* Place the button at the bottom of the page */
+        right: 27px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        display: none;
+        width: 83px;
+        height: 68px;
+    }
+
+    #closeIcon {
+        cursor: pointer;
+    }
+
+    #carousellist a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .hotelIcon {
+        float: left;
+        padding-left: 18px;
+        padding-top: 3px;
+        padding-right: 9px;
+        padding-bottom: 56px;
+        width: 11px;
+        height: 13px;
+        content: url(../img/Desktop/icon_hotel.png);
+    }
+
+    .closeIcon {
+        float: left;
+        padding: 39px 18px 39px 18px;
+        /* padding-left: 20px;
+        padding-top: 40px; */
+        width: 20px;
+        height: 20px;
+        content: url(../img/Desktop/icon_close.png);
+    }
+
+    .carouseltext {
+        width: 200px;
+        height: 72px;
+        text-align: left;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 18px;
+        color: white;
+        font-family: Avenir Medium;
+    }
+
+    .stickyBar {
+        width: 100%;
+        height: 70px;
+        background-color: #002F65;
+        position: fixed;
+        bottom: 0;
+        color: white;
+        display: none;
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+
+    .scroll-nav {
+        display: none;
+        width: 100%;
+        background: #002F65;
+        opacity: 0.95;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 0px;
+        /* Place the button at the bottom of the page */
+        z-index: 99;
+        /* Make sure it does not overlap */
+    }
+
+    .nav-open {
+        animation-name: openScrollNav;
+        animation-duration: 0.2s;
+    }
+
+    .nav-close {
+        animation-name: closeScrollNav;
+        animation-duration: 0.2s;
+    }
+
+    @keyframes openScrollNav {
+        from {
+            right: -100%;
+        }
+
+        to {
+            right: 0;
+        }
+    }
+
+    @keyframes closeScrollNav {
+        from {
+            right: 0;
+        }
+
+        to {
+            right: -100%;
+        }
+    }
+
+    .scroll-nav::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* .scroll-nav::-webkit-scrollbar-track {} */
+
+    .scroll-nav::-webkit-scrollbar-thumb {
+        background: #2E7D32;
+    }
+
+    .item-split-line {
+        height: 72px;
+        opacity: 0.4;
+        border: 1px solid #FFFFFF;
+    }
+
+    #carousellist {
+        justify-content: center;
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin: 0px;
+        text-align: center;
+    }
+
+    .closebuttonli {
+        width: 56px;
+    }
+
+    li.carousel {
+        display: flex;
+        width: 200px;
+        height: 72px;
+        padding: 14px 18px 12px 0px;
+        /* margin: 1px; */
+        background: #002F65;
+
+    }
+
+    li.iconhotel {
+        width: 50px;
+        color: #FFF;
+        text-decoration: none;
+
+    }
+
+    li.carousel:first-child:before {
+        display: none;
+    }
+
+    li.carousel:before {
+        content: "";
+        display: inline-block;
+        /* margin-left: 40px; */
+        border-right: 1px solid grey;
+        height: 60px;
+        top: 20px;
+        position: absolute;
+    }
+
+}
