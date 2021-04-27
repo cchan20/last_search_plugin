@@ -1,6 +1,8 @@
 var language = "zh_hk";
+var lastSearchAnalyticFramework;
 
 window.onload = function () {
+	lastSearchAnalyticFramework = window.WDPRO && window.WDPRO.Analytics && window.WDPRO.Analytics.Framework;
 
 	var translator = new Language(getCurrentLanguage());
 
@@ -30,6 +32,7 @@ function toggleScrollBar() {
 }
 
 function showScroll() {
+	console.log('showScroll');
 	showCookie();
 	var scrollNav = document.getElementById('scroll-nav');
 	scrollNav.style.display = 'block';
@@ -45,15 +48,21 @@ function showScroll() {
 		continue_btn.style.display = 'none';
 	}, 200);
 
-	console.log('Last Search Expend');
-	var model = {
-		trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
-		linkId: 'last_search_expend'
-	};
-	WDPRO.Analytics.framework.trackElement(model);
+	if (!lastSearchAnalyticFramework) {
+		lastSearchAnalyticFramework = window.WDPRO && window.WDPRO.Analytics && window.WDPRO.Analytics.Framework;
+	}
+	if (lastSearchAnalyticFramework) {
+		console.log('Last Search Expend');
+		var model = {
+			trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
+			linkId: 'last_search_expend'
+		};
+		lastSearchAnalyticFramework.trackElement(model);
+	}
 };
 
 function closeScroll() {
+	console.log('closeScroll');
 	var scrollNav = document.getElementById('scroll-nav');
 	if (scrollNav.classList.contains('nav-open')) {
 		scrollNav.classList.remove('nav-open');
@@ -70,13 +79,17 @@ function closeScroll() {
 		continue_btn.classList.add('continue-btn-show');
 	}
 
-	console.log('Last Search Collapse');
-	var model = {
-		trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
-		linkId: 'last_search_collapse'
-	};
-	WDPRO.Analytics.framework.trackElement(model);
-
+	if (!lastSearchAnalyticFramework) {
+		lastSearchAnalyticFramework = window.WDPRO && window.WDPRO.Analytics && window.WDPRO.Analytics.Framework;
+	}
+	if (lastSearchAnalyticFramework) {
+		console.log('Last Search Collapse');
+		var model = {
+			trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
+			linkId: 'last_search_collapse'
+		};
+		lastSearchAnalyticFramework.trackElement(model);
+	}
 };
 
 function getCurrentLanguage() {
@@ -178,7 +191,7 @@ function getCookie(name) {
 function save(occupancy, aDate, dDate, hotelDisplayName, offerDisplayName, url) {
 	var expirydate = new Date();
 	expirydate.setDate(expirydate.getDate() + 30);
-	var cookieJson = '{"occupancy": "' + occupancy + '", "aDate": "' + aDate + '", "dDate": "' + dDate + '", "hotelDisplayName": "' + hotelDisplayName + '", "offerDisplayName": "' + offerDisplayName + '","expirydate":"' + expirydate + '","url":"' + url + '"}';
+	var cookieJson = '{"occupancy": "' + encodeURIComponent(occupancy) + '", "aDate": "' + aDate + '", "dDate": "' + dDate + '", "hotelDisplayName": "' + encodeURIComponent(hotelDisplayName) + '", "offerDisplayName": "' + encodeURIComponent(offerDisplayName) + '","expirydate":"' + expirydate + '","url":"' + url + '"}';
 	const indexOfCookie = checkAvaliableCookies();
 	// console.log('indexOfCookie: ' + indexOfCookie);
 
@@ -213,6 +226,7 @@ function removeArrivalExpiryCookies() {
 		// console.log('Check today date: ' + expirydate);
 		// console.log('Check cookies: ' + cookiesName);
 		if (getCookie(cookiesName) != null) {
+			// console.log('removeArrivalExpiryCookies: ' + getCookie(cookiesName));
 			var dateobj = JSON.parse(getCookie(cookiesName));
 			var date1 = new Date(dateobj.aDate);
 			// console.log('Check date: ' + date1);
@@ -230,6 +244,7 @@ function checkOldestCookies() {
 	var datearr = [];
 	for (i = 0; i < 3; i++) {
 		if (getCookie("d" + (i + 1)) != null) {
+			// console.log('checkOldestCookies: ' + getCookie("d" + (i + 1)));
 			var dateobj = JSON.parse(getCookie("d" + oldestIndex));
 			var dateobj2 = JSON.parse(getCookie("d" + (i + 1)));
 			var date1 = new Date(dateobj.expirydate);
@@ -307,10 +322,11 @@ function showCookie() {
 
 			// html = html + '<li class="carousel"><div class="item-split-line"></div><div class="iconhotel"><img class="hotelIcon" src="img/App/icon_hotel.png"></div><div class="carouseltext">';
 			html = html + '<li class="carousel"><div class="item-split-line"></div><a href="' + url + '"><div class="iconhotel"><div class="hotelIcon"></div></div><div class="carouseltext">';
-			html = html + checkDisplayConentLength(hotelDisplayName) + '</br>';
-			html = html + checkDisplayConentLength(offerDisplayName) + '</br>';
+			html = html + checkDisplayConentLength(decodeURIComponent(hotelDisplayName)) + '</br>';
+			html = html + checkDisplayConentLength(decodeURIComponent(offerDisplayName)) + '</br>';
 			html = html + checkDisplayConentLength(aDate.replace(/[-=]/g, "/") + ' - ' + dDate.replace(/[-=]/g, "/")) + '</br>';
-			html = html + checkDisplayConentLength(occupancy);
+			// html = html + checkDisplayConentLength(occupancy);
+			html = html + decodeURIComponent(occupancy);
 			// html = html + adultNo + ' ' + translator.getStr("Adults") + ', ' + childNo + ' ' + translator.getStr("Children");
 			html = html + '</div></a></li>';
 			// html = html + '</div></li>';
@@ -319,13 +335,20 @@ function showCookie() {
 	document.getElementById('carousellist').innerHTML = html;
 
 	document.addEventListener("click", function (e) {
+		console.log('EventListener click');
 		if (e.target && e.target.matches("div.carouseltext")) {
-			console.log('Send History Click Track');
-			var model = {
-				trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
-				linkId: 'last_search_history_click'
-			};
-			WDPRO.Analytics.framework.trackElement(model);
+
+			if (!lastSearchAnalyticFramework) {
+				lastSearchAnalyticFramework = window.WDPRO && window.WDPRO.Analytics && window.WDPRO.Analytics.Framework;
+			}
+			if (lastSearchAnalyticFramework) {
+				console.log('Send History Click Track');
+				var model = {
+					trackingType: 'customLink', // Should be "customLink" for link tracking, "customPage" for page tracking
+					linkId: 'last_search_history_click'
+				};
+				lastSearchAnalyticFramework.trackElement(model);
+			}
 		}
 	});
 	//$('#carousellist').html(html);
