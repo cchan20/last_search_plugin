@@ -93,6 +93,10 @@ only screen and (max-width: 767.98px) {
         height: 51px;
     }
 
+    :focus {
+        outline: none !important;
+    }
+
     #carousellist a {
         color: #FFFFFF;
         text-decoration: none;

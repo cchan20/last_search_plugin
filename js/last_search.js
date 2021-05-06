@@ -351,7 +351,6 @@ function showCookie() {
 			}
 		}
 	});
-	//$('#carousellist').html(html);
 }
 
 function checkDisplayConentLength(input_string) {
