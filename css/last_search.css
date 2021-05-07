@@ -128,7 +128,9 @@ only screen and (max-width: 767.98px) {
     }
 
     .carouseltext {
-        width: 192px;
+        float: left;
+        width: 142px;
+        min-width: 142px;
         height: 64px;
         text-align: left;
         font-size: 12px;
@@ -137,18 +139,7 @@ only screen and (max-width: 767.98px) {
         font-family: Avenir Medium;
         white-space: nowrap;
         text-overflow: ellipsis;
-    }
-
-    .stickyBar {
-        width: 100%;
-        height: 70px;
-        background-color: #002F65;
-        position: fixed;
-        bottom: 0;
-        color: white;
-        display: none;
-        box-sizing: border-box;
-        padding: 10px 0;
+        overflow: hidden;
     }
 
     .scroll-nav {
@@ -211,7 +202,8 @@ only screen and (max-width: 767.98px) {
     .item-split-line {
         height: 63px;
         opacity: 0.4;
-        border: 1px solid #FFFFFF;
+        width: 1px;
+        background-color: #FFFFFF;
     }
 
     #carousellist {
@@ -230,17 +222,12 @@ only screen and (max-width: 767.98px) {
     li.carousel {
         display: flex;
         width: 192px;
+        min-width: 192px;
         height: 64px;
         padding: 8px 0px 7px 0px;
         /* margin: 1px; */
         background: #002F65;
 
-    }
-
-    li.iconhotel {
-        width: 50px;
-        color: #FFF;
-        text-decoration: none;
     }
 
     li.carousel:first-child:before {
@@ -251,7 +238,7 @@ only screen and (max-width: 767.98px) {
         content: "";
         display: inline-block;
         /* margin-left: 40px; */
-        border-right: 1px solid grey;
+        /* border-right: 1px solid grey; */
         height: 70px;
         top: 9px;
         position: absolute;
@@ -260,7 +247,7 @@ only screen and (max-width: 767.98px) {
 }
 
 /* Desktop Version */
-@media only screenand and (min-width: 767.98px),
+@media
 only screen and (min-width: 767.99px) {
     #continueSearchImg {
         content: url(../img/Desktop/L.png);
@@ -376,7 +363,9 @@ only screen and (min-width: 767.99px) {
     }
 
     .carouseltext {
-        width: 200px;
+        float: left;
+        width: 190px;
+        min-width: 190px;
         height: 72px;
         text-align: left;
         font-size: 14px;
@@ -385,18 +374,7 @@ only screen and (min-width: 767.99px) {
         line-height: 18px;
         color: white;
         font-family: Avenir Medium;
-    }
-
-    .stickyBar {
-        width: 100%;
-        height: 70px;
-        background-color: #002F65;
-        position: fixed;
-        bottom: 0;
-        color: white;
-        display: none;
-        box-sizing: border-box;
-        padding: 10px 0;
+        overflow: hidden;
     }
 
     .scroll-nav {
@@ -450,8 +428,6 @@ only screen and (min-width: 767.99px) {
         height: 4px;
     }
 
-    /* .scroll-nav::-webkit-scrollbar-track {} */
-
     .scroll-nav::-webkit-scrollbar-thumb {
         background: #2E7D32;
     }
@@ -459,7 +435,8 @@ only screen and (min-width: 767.99px) {
     .item-split-line {
         height: 72px;
         opacity: 0.4;
-        border: 1px solid #FFFFFF;
+        width: 1px;
+        background-color: #FFFFFF;
     }
 
     #carousellist {
@@ -477,18 +454,13 @@ only screen and (min-width: 767.99px) {
 
     li.carousel {
         display: flex;
-        width: 200px;
+        width: 246px;
+        min-width: 246px;
         height: 72px;
+        max-height: 72px;
         padding: 14px 18px 12px 0px;
         /* margin: 1px; */
         background: #002F65;
-
-    }
-
-    li.iconhotel {
-        width: 50px;
-        color: #FFF;
-        text-decoration: none;
 
     }
 
@@ -500,7 +472,7 @@ only screen and (min-width: 767.99px) {
         content: "";
         display: inline-block;
         /* margin-left: 40px; */
-        border-right: 1px solid grey;
+        /* border-right: 1px solid grey; */
         height: 60px;
         top: 20px;
         position: absolute;

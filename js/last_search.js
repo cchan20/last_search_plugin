@@ -321,11 +321,10 @@ function showCookie() {
 
 
 			// html = html + '<li class="carousel"><div class="item-split-line"></div><div class="iconhotel"><img class="hotelIcon" src="img/App/icon_hotel.png"></div><div class="carouseltext">';
-			html = html + '<li class="carousel"><div class="item-split-line"></div><a href="' + url + '"><div class="iconhotel"><div class="hotelIcon"></div></div><div class="carouseltext">';
-			html = html + checkDisplayConentLength(decodeURIComponent(hotelDisplayName)) + '</br>';
-			html = html + checkDisplayConentLength(decodeURIComponent(offerDisplayName)) + '</br>';
-			html = html + checkDisplayConentLength(aDate.replace(/[-=]/g, "/") + ' - ' + dDate.replace(/[-=]/g, "/")) + '</br>';
-			// html = html + checkDisplayConentLength(occupancy);
+			html = html + '<li class="carousel"><div class="item-split-line"></div><a href="' + url + '"><div class="hotelIcon"></div><div class="carouseltext">';
+			html = html + decodeURIComponent(hotelDisplayName) + '</br>';
+			html = html + decodeURIComponent(offerDisplayName) + '</br>';
+			html = html + aDate.replace(/[-=]/g, "/") + ' - ' + dDate.replace(/[-=]/g, "/") + '</br>';
 			html = html + decodeURIComponent(occupancy);
 			// html = html + adultNo + ' ' + translator.getStr("Adults") + ', ' + childNo + ' ' + translator.getStr("Children");
 			html = html + '</div></a></li>';
@@ -351,13 +350,4 @@ function showCookie() {
 			}
 		}
 	});
-}
-
-function checkDisplayConentLength(input_string) {
-	var dots = "...";
-	if (input_string.length > 24) {
-		// you can also use substr instead of substring
-		input_string = input_string.substring(0, 20) + dots;
-	}
-	return input_string;
 }
